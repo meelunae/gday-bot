@@ -1,6 +1,4 @@
-import { model, Schema } from "mongoose";
 import cryptoRandomString from "crypto-random-string";
-import { useClient } from "../../hooks";
 import {
     EmbedBuilder,
     inlineCode,
@@ -8,7 +6,9 @@ import {
     TimestampStyles,
     userMention,
 } from "discord.js";
+import { model, Schema } from "mongoose";
 import { CHANNELS, GUILDS } from "../../globals";
+import { useClient } from "../../hooks";
 
 export enum CaseType {
     WARN = "WARN",
@@ -30,6 +30,7 @@ export interface ICase {
     createdAtTimestamp: string;
     userNotified: boolean;
     imported: boolean;
+    noLog: boolean;
 }
 
 const caseSchema = new Schema<ICase>({
@@ -52,6 +53,10 @@ const caseSchema = new Schema<ICase>({
     },
     userNotified: Boolean,
     imported: {
+        type: Boolean,
+        default: false,
+    },
+    noLog: {
         type: Boolean,
         default: false,
     },
@@ -106,6 +111,7 @@ const getUsernameFromId = async (id: string) => {
 caseSchema.pre("save", async function () {
     if (!this.isNew) return;
     if (this.guild !== GUILDS.MAIN) return;
+    if (this.noLog) return;
     if (process.env.NODE_ENV === "development") return;
     const channel = await useClient().channels.fetch(CHANNELS.MAIN.case_log);
     if (channel?.isTextBased()) {

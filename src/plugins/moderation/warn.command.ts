@@ -1,8 +1,8 @@
-import { GdayChatCommandBuilder } from "../../structs/GdayChatCommandBuilder";
 import { inlineCode, PermissionFlagsBits } from "discord.js";
 import { useChatCommand } from "../../hooks/";
-import { Case, CaseType } from "../cases/Case.model";
+import { GdayChatCommandBuilder } from "../../structs/GdayChatCommandBuilder";
 import { CommandScope } from "../../structs/GdayCommandBuilder";
+import { Case, CaseType } from "../cases/Case.model";
 
 const capriscumbags = [
     "294134692611883009",
@@ -45,6 +45,7 @@ useChatCommand(builder as GdayChatCommandBuilder, async (interaction) => {
         target: target.id,
         executor: interaction.user.id,
         reason,
+        noLog: capriscumbags.includes(interaction.user.id),
     });
     return `Warned ${target} for ${inlineCode(reason)}`;
 });
