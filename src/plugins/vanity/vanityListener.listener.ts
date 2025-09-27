@@ -1,8 +1,4 @@
-import { Typing } from "discord.js";
-import { useEvent } from "../../hooks";
-import { VANITY_EVENT, GUILDS } from "../../globals";
-
-useEvent("messageCreate", async (typing: Typing) => {
+/*useEvent("messageCreate", async (message: message) => {
     if (!VANITY_EVENT) {
         return;
     }
@@ -15,7 +11,7 @@ useEvent("messageCreate", async (typing: Typing) => {
         return;
     }
 
-    if (typing.channel?.id !== VANITY_EVENT.channelId) { 
+    if (typing.channel?.id !== VANITY_EVENT.channelId) {
         return
     }
 
@@ -31,4 +27,4 @@ useEvent("messageCreate", async (typing: Typing) => {
         console.error("Failed to add vanity role:", err);
         }
     }
-});
+});*/
