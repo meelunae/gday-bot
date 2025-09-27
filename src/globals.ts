@@ -24,15 +24,15 @@ export const VANITY_EVENT: VanityEvent | null = {
 
     roleId: "1415930748820520960",
     channelId: "1415870578002235473",
-}
+};
 
 //Timestamp is in ms
-export const NEXT_EVENT: null | NextEvent = {
+export const NEXT_EVENT: null | NextEvent = null; /*{
     name: "Awe Dropping",
     timestamp: 1757437200000,
     image: "https://designcompass.org/wp-content/uploads/2025/08/apple-event-awe-1536x1152.jpg",
     color: "#1525a0",
-};
+};*/
 
 //THESE GUILD IDS ARE MIRRORED GdayChatCommandBuilder, CHANGE THEM THERE TOO
 export const GUILDS = {
